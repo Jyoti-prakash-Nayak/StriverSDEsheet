@@ -18,6 +18,7 @@
     };
 
 *************************************************************/
+
 void changeTree(BinaryTreeNode < int > * root) {
     // Write your code here.
     if(root==NULL)
