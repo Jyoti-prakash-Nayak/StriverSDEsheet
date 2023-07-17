@@ -1,38 +1,34 @@
 #include <bits/stdc++.h>
-string check(string &str, int l, int h, int n)
-{
-    while (l >= 0 && h <= n)
-    {
-        if (str[l] != str[h])
-        {
-            break;
-        }
-        l--;
-        h++;
-    }
-    return str.substr(l + 1, h - l - 1);
-}
-string longestPalinSubstring(string str)
+string reverseString(string &str)
 {
     // Write your code here.
-    int n = str.size();
-    string res = "";
+    stack<string> st;
+    string temp;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < str.size(); i++)
     {
-        string odd = check(str, i - 1, i + 1, n);
-        if (odd.size() > res.size())
+        if (str[i] != ' ')
         {
-            res = odd;
+            temp += str[i];
+        }
+        if (str[i] == ' ' || i == str.size() - 1)
+        {
+            if (temp.size() != 0)
+            {
+                st.push(temp);
+                temp.clear();
+            }
         }
     }
 
-    for (int i = 0; i < n; i++)
+    string res;
+    while (!st.empty())
     {
-        string even = check(str, i - 1, i, n);
-        if (even.size() > res.size())
+        res += st.top();
+        st.pop();
+        if (st.size() != 0)
         {
-            res = even;
+            res += ' ';
         }
     }
     return res;
